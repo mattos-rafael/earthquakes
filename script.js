@@ -38,6 +38,7 @@ async function getData() {
   
 }
 
+// Map functions
 function clearMarkers(markers) {
   markers.forEach(element => {
     element.remove(map)
@@ -143,33 +144,6 @@ function printMap(data) {
   
 }
 
-map.on('popupopen',  (event) => {
-    const favoriteBtn = document.getElementById("favorite")
-    const deleteBtn = document.getElementById('delete-favorite')
-    if (favoriteBtn) {
-      favoriteBtn.addEventListener('submit', (event) => {
-        event.preventDefault()
-        
-        const earthquake = {
-          id: event.target.elements.id.value,
-          title: event.target.elements.title.value,
-          time: event.target.elements.time.value,
-          location: event.target.elements.location.value,
-          code: event.target.elements.code.value,
-          mag: event.target.elements.mag.value,
-          lat: event.target.elements.latitude.value,
-          lng: event.target.elements.longitude.value,
-        }
-
-        addToFavorites(earthquake)
-        })
-    }
-    if (deleteBtn) {
-      deleteBtn.addEventListener('click', deleteFavorite)
-    }
-    
-    }) 
-
 
 function printMap2(data) {
   clearMarkers(markers_map2)
@@ -247,6 +221,8 @@ async function filterData(magnitude = undefined, time_start = undefined, time_en
   printMap2(data)
 }
 
+
+// User functionalities
 function signUpUser(email, password) {
   firebase.auth()
           .createUserWithEmailAndPassword(email, password)
@@ -453,10 +429,36 @@ document.getElementById('login').addEventListener('submit',(event) => {
   for (const form of forms) {
     form.style.display = 'none'
   }
-  document.getElementById('user').innerHTML += `${email}`
+  document.getElementById('user').innerHTML = `${email}`
   document.getElementById('logout-btn').style.display = 'flex'
 })
 
+map.on('popupopen',  (event) => {
+    const favoriteBtn = document.getElementById("favorite")
+    const deleteBtn = document.getElementById('delete-favorite')
+    if (favoriteBtn) {
+      favoriteBtn.addEventListener('submit', (event) => {
+        event.preventDefault()
+        
+        const earthquake = {
+          id: event.target.elements.id.value,
+          title: event.target.elements.title.value,
+          time: event.target.elements.time.value,
+          location: event.target.elements.location.value,
+          code: event.target.elements.code.value,
+          mag: event.target.elements.mag.value,
+          lat: event.target.elements.latitude.value,
+          lng: event.target.elements.longitude.value,
+        }
+
+        addToFavorites(earthquake)
+        })
+    }
+    if (deleteBtn) {
+      deleteBtn.addEventListener('click', deleteFavorite)
+    }
+    
+  }) 
 
 
 document.getElementById('logout-btn').style.display = 'none'
