@@ -10,9 +10,12 @@
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
   <link rel="stylesheet" href="./style.css">
-  <title>Document</title>
+  <title>Earthquake Watcher</title>
 </head>
 <body>
+  <header>
+    <h1>Earthquake Watcher</h1>
+  </header>
   <main>
     <section class="map-section">
       <button id="api-data">Last 24h</button>
@@ -47,7 +50,11 @@
       </div>
     </section>
 
-    <div class="logout-btn"><button onclick="logoutUser()">Logout</button></div>
+    <div id="logout-btn">
+      <h4 id="user"></h4>
+      <h2>Logout</h2>
+      <button  onclick="logoutUser()">Logout</button>
+    </div>
     
       
     

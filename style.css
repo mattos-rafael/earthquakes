@@ -1,3 +1,12 @@
+header {
+  background-color: gray;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 body {
   background-color: lightgray;
 }
@@ -42,8 +51,13 @@ footer {
   justify-content: center;
 }
 
-.logout-btn {
-  margin: 30px;
+#logout-btn {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
 }
 
 #filter-btn {
@@ -66,6 +80,9 @@ footer {
 
 
 @media screen and (min-width: 768px) {
+  header {
+    padding-left: 2rem;
+  }
 
   form {
     justify-content: center;
@@ -74,10 +91,6 @@ footer {
   .form-section {
     margin-left: 8rem;
     margin-right: 8rem;
-  }
-
-  .logout-btn {
-    margin-left: 9rem;
   }
 
   #filter-btn {
@@ -89,5 +102,52 @@ footer {
   }
   #map2 {
     width: 45rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+
+  .map-section {
+    margin-left: 13rem;
+  }
+
+  .form-section {
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
+
+  #filter-btn {
+    margin-left: 5rem;
+  }
+
+  #map {
+    width: 60rem;
+  }
+  #map2 {
+    width: 60rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  header {
+    padding-left: 6rem;
+  }
+
+  .form-section {
+    margin-left: 40rem;
+    margin-right: 40rem;
+  }
+
+  #filter-btn {
+    margin-left: 13rem;
+  }
+
+  #map {
+    height: 35rem;
+    width: 90rem;
+  }
+  #map2 {
+    height: 35rem;
+    width: 90rem;
   }
 }

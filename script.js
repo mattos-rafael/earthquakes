@@ -181,11 +181,11 @@ function printMap2(data) {
 
 
     const marker = L.marker([earthquake.geometry.coordinates[1], earthquake.geometry.coordinates[0]], {icon: myIcon}).addTo(map2)
-    // marker.bindPopup(`<p>Title: ${earthquake.properties.title}</p>
-    //                   <p>Time: ${new Date(earthquake.properties.time)}</p>
-    //                   <p>Location: ${earthquake.properties.place}</p>
-    //                   <p>Code: ${earthquake.properties.code}</p>
-    //                   <p>Magnitude: ${earthquake.properties.mag}</p> `)
+    marker.bindPopup(`<p>Title: ${earthquake.properties.title}</p>
+                      <p>Time: ${new Date(earthquake.properties.time)}</p>
+                      <p>Location: ${earthquake.properties.place}</p>
+                      <p>Code: ${earthquake.properties.code}</p>
+                      <p>Magnitude: ${earthquake.properties.mag}</p> `)
 
 
     markers_map2 = [...markers_map2, marker]
@@ -284,29 +284,14 @@ function loginUser(email, password) {
 
 function logoutUser() {
   firebase.auth().signOut()
+  const forms = document.getElementsByClassName('form-section')
+  for (const form of forms) {
+    form.style.display = 'block'
+  }
+  document.getElementById('logout-btn').style.display = 'none'
 }
 
-document.getElementById("register").addEventListener("submit", function (event) {
-  event.preventDefault();
-  let email = event.target.elements.email.value;
-  let pass = event.target.elements.password.value;
-  let pass2 = event.target.elements.password2.value;
 
-  pass === pass2 ? signUpUser(email, pass) : alert("error password");
-
-  document.getElementById('register').reset()
-})
-
-document.getElementById('login').addEventListener('submit',(event) => {
-  event.preventDefault()
-
-  const email = event.target.email.value
-  const pass = event.target.password.value
-
-  loginUser(email, pass)
-
-  document.getElementById('login').reset()
-})
 
 function addToFavorites(earthquake) {
   const user = firebase.auth().currentUser
@@ -442,5 +427,38 @@ function deleteFavorite() {
 document.getElementById('fav-data').addEventListener('click', printFavorites)
 document.getElementById('api-data').addEventListener('click', getData)
 
+
+document.getElementById("register").addEventListener("submit", function (event) {
+  event.preventDefault();
+  let email = event.target.elements.email.value;
+  let pass = event.target.elements.password.value;
+  let pass2 = event.target.elements.password2.value;
+
+  pass === pass2 ? signUpUser(email, pass) : alert("error password");
+
+  document.getElementById('register').reset()
+})
+
+
+document.getElementById('login').addEventListener('submit',(event) => {
+  event.preventDefault()
+
+  const email = event.target.email.value
+  const pass = event.target.password.value
+
+  loginUser(email, pass)
+
+  document.getElementById('login').reset()
+  const forms = document.getElementsByClassName('form-section')
+  for (const form of forms) {
+    form.style.display = 'none'
+  }
+  document.getElementById('user').innerHTML += `${email}`
+  document.getElementById('logout-btn').style.display = 'flex'
+})
+
+
+
+document.getElementById('logout-btn').style.display = 'none'
 
 getData()
